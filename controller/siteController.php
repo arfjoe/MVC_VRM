@@ -1,21 +1,28 @@
 <?php
 namespace App\Controller;
 
-use App\Core\{Router, Request};
+use App\Core\Application;
 
-class SiteController {
+class SiteController extends Controller {
 
-    public static function handleContact(){
+    public static function handleContact() {
         echo "<pre>";
         var_dump($_POST);
         echo "</pre>";
     }
 
-    public static function handleView(){
+    public static function welcome() {
+        $title = "Welcome Page";
+        return Application::$app->router->renderView('welcome', ['title' => $title]);
+    }
 
-        $view = Request::getPath();
-        $view == '/' ? $view = 'welcome' : $view;
-        return router::renderView($view);
+    public static function project() {
+        return Application::$app->router->renderView('project');
+    }
+
+    public static function contact() {
+        $title = "Contact Page";
+        return Application::$app->router->renderView('contact', ['title' => $title]);
     }
 
 }
