@@ -1,27 +1,41 @@
 <?php
-namespace App\Controller;
+
+namespace App\Controllers;
 
 use App\Core\Application;
+use App\Core\Controller;
 
-class SiteController extends Controller {
-
-    public static function handleContact() {
-        echo "<pre>";
-        var_dump($_POST);
-        echo "</pre>";
+class SiteController extends Controller
+{
+    /**
+     * show welcome page
+     * @return view
+     */
+    public function welcome()
+    {
+        $params = [
+            'username' => "houcem",
+            'email' => "hedhoucem@gmail.com",
+            'skills' => ['PHP', 'Symfony', 'JavaScript', 'HTML', 'CSS']
+        ];
+        return $this->view('welcome', $params);
+    }
+    /**
+     * show contact form
+     * @return view
+     */
+    public function contact()
+    {
+        return $this->view('contact');
     }
 
-    public static function welcome() {
-        $title = "Welcome Page";
-        return Application::$app->router->renderView('welcome', ['title' => $title]);
-    }
-
-    public static function project() {
-        return Application::$app->router->renderView('project');
-    }
-
-    public static function contact() {
-        $title = "Contact Page";
-        return Application::$app->router->renderView('contact', ['title' => $title]);
+    /**
+     * Handle submitted contact form
+     */
+    public static function handleContact()
+    {
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
     }
 }
