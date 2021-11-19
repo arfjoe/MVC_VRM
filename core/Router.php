@@ -73,9 +73,9 @@ class Router
      * @param string $view
      * @return string
      */
-    public static function renderView($view)
+    public static function renderView($view, $array = [])
     {
-        $layoutContent = self::layoutContent();
+        $layoutContent = self::layoutContent($array);
         $viewContent = self::viewContent($view);
         return str_replace('{{ content }}', $viewContent, $layoutContent);
     }
@@ -84,9 +84,10 @@ class Router
      * get layout content
      * @return string
      */
-    public static function layoutContent()
+    public static function layoutContent($array)
     {
         ob_start();
+        extract($array);
         include_once Application::$ROOT_DIR . "/views/layouts/main.php";
         return ob_get_clean();
     }
