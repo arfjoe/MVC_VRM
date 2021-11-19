@@ -9,4 +9,8 @@ class SiteController{
         echo "</pre>";
         exit;
     }
+
+    public static function handleView(){
+        return 'test';
+    }
 }
