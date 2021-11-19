@@ -14,8 +14,8 @@ class SiteController extends Controller
     public function welcome()
     {
         $params = [
-            'username' => "houcem",
-            'email' => "hedhoucem@gmail.com",
+            'username' => "Matthieu",
+            'email' => "matthieu-neo@hotmail.fr",
             'skills' => ['PHP', 'Symfony', 'JavaScript', 'HTML', 'CSS']
         ];
         return $this->view('welcome', $params);
