@@ -17,5 +17,4 @@ class SiteController {
         $view == '/' ? $view = 'welcome' : $view;
         return router::renderView($view);
     }
-
 }
