@@ -8,7 +8,7 @@ class Request
      * return the request path
      * @return string
      */
-    public static function getPath()
+    public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $pos = strpos($path, '?');
