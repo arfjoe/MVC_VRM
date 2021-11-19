@@ -2,7 +2,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Core\Application;
-use App\Controllers\SiteController;
+use App\Controller\SiteController;
+
 
 $app = new Application(dirname(__DIR__));
 
