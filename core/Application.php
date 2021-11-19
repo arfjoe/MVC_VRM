@@ -4,7 +4,6 @@ namespace App\Core;
 
 use App\Core\Router;
 use App\Core\Response;
-
 class Application
 {
     public static Application $app;
