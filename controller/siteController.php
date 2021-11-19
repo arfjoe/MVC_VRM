@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Core\{Router, Request};
+use App\Core\Application;
 
 class SiteController extends Controller {
 
@@ -13,16 +13,16 @@ class SiteController extends Controller {
 
     public static function welcome(){
         $title = "Welcome Page";
-        return router::renderView('welcome', ['title' => $title]);
+        return Application::$app->router->renderView('welcome', ['title' => $title]);
     }
 
     public static function project(){
-        return router::renderView('project');
+        return Application::$app->router->renderView('project');
     }
 
     public static function contact(){
         $title = "Contact Page";
-        return router::renderView('contact', ['title' => $title]);
+        return Application::$app->router->renderView('contact', ['title' => $title]);
     }
 
 }
