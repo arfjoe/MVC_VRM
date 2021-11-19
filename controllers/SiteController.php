@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Application;
 use App\Core\Controller;
+use App\Core\Request;
 
 class SiteController extends Controller
 {
@@ -32,10 +33,11 @@ class SiteController extends Controller
     /**
      * Handle submitted contact form
      */
-    public static function handleContact()
+    public static function handleContact(Request $request)
     {
+        $body = APPLICATION::$app->request->getBody();
         echo '<pre>';
-        print_r($_POST);
+        print_r($body);
         echo '</pre>';
     }
 }
