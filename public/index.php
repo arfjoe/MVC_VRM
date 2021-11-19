@@ -4,7 +4,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Core\Application;
 use App\Controller\SiteController;
 
-
 $app = new Application(dirname(__DIR__));
 
 $app->router->get('/', [SiteController::class, 'handleView']);
