@@ -4,6 +4,7 @@ namespace App\Core;
 
 use App\Core\Router;
 use App\Core\Response;
+
 class Application
 {
     public static Application $app;
@@ -18,7 +19,7 @@ class Application
      * @return void
      */
     public function __construct(string $rootPath)
-    {   
+    {
         self::$app = $this;
         self::$ROOT_DIR = $rootPath;
         $this->request = new Request();
