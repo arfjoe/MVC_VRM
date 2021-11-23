@@ -1,22 +1,13 @@
 <section>
-    <h3>Register</h3>
-    <form action="" method="post">
-        <div class="mb-3">
-            <label for="login" class="form-label">Login</label>
-            <input type="text" class="form-control" name="login" id="login">
+    <h1>Register</h1>
+    <?php $form = \App\core\form\Form::begin('', "post") ?>
+        <div class="row">
+                <?php echo $form->field($model, 'login') ?> 
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" name="email" id="email">
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de passe</label><br/>
-          <input type="password" class="form-control" id="password" name="password">
-        </div>
-        <div class="form-group">
-          <label for="passwordConfirm">Vérifiez votre mot de passe</label><br/>
-          <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" data-name="Vérification de mot de passe">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <?php echo $form->field($model, 'email') ?>
+        <?php echo $form->field($model, 'password')->passwordField() ?>
+        <?php echo $form->field($model, 'confirmPassword')->passwordField() ?>
+        <button class="btn btn-success">Submit</button><br>
+        <a href="/login">Déjà inscrit ?</a>
+    <?php \App\core\form\Form::end() ?>
 </section>

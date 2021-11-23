@@ -47,4 +47,14 @@ class Request
         }
         return $body;
     }
+
+    public function isPost(): bool
+    {
+        return $this->getMethod() === 'post';
+    }
+
+    public function isGet(): bool
+    {
+        return $this->getMethod() === 'get';
+    }
 }

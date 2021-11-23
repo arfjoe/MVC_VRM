@@ -44,18 +44,24 @@ abstract class Model{
                 if($ruleName === self::RULE_MAX && strlen(($value) > $rule['max'])){
                     $this->addError($attribute, self::RULE_MAX, $rule);
                 }
-                /* if($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}){
+                if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, self::RULE_MATCH, $rule);
-                } */
+                }
             }
         }
         return empty($this->errors);
     }
 
-    public function addError(string $attribute, string $rule, $params=[]){
+    /**
+     * @param string $attribute
+     * @param string $rule
+     * @param array $params
+     */
+    public function addError(string $attribute, string $rule, array $params = [])
+    {
         $message = $this->errorMessages()[$rule] ?? '';
-        foreach($params as $key=>$value){
-            $message = str_replace("{{$key}}",$value,$message);
+        foreach ($params as $key => $value) {
+             $message = str_replace("{{$key}}", $value, $message);
         }
         $this->errors[$attribute][] = $message;
     }
@@ -69,5 +75,13 @@ abstract class Model{
             self::RULE_MAX=>'Maximum {max} caractères',
             self::RULE_MATCH=>'le champ doit être le même que {match}',
         ];
+    }
+
+    public function hasError($attribute){
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute){
+        return $this->errors[$attribute][0] ?? false;
     }
 }
