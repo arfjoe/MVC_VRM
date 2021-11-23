@@ -14,66 +14,45 @@ class AuthController extends Controller
      * show contact form
      * @return view
      */
-    public function login()
+    public function login(Request $request)
     {
-        return $this->view('login');
+        $loginModel = new LoginModel();
+        if ($request->isPost()) {
+
+            $loginModel->loadData($request->getBody());
+
+            if ($loginModel->validate() && $loginModel->login()) {
+                $loginModel->login();
+            }
+
+            return $this->view('login', [
+                'model' => $loginModel
+            ]);
+        }
+
+        return $this->view('login', [
+            'model' => $loginModel
+        ]);
     }
 
-    public function register()
+    public function register(Request $request)
     {
-        return $this->view('register');
-    }
-
-    /**
-     * Handle submitted Login form
-     */
-    public static function handleLogin(Request $request)
-    {
-        $body = APPLICATION::$app->request->getBody();
-        echo '<pre>';
-        print_r($body);
-        echo '</pre>';
-    }
-
-    /**
-     * Handle submitted Register form
-     */
-    public function handleRegister(Request $request)
-    {
-
         $registerModel = new RegisterModel();
-        if($request->getMethod()==='post'){
+        if ($request->isPost()) {
+
             $registerModel->loadData($request->getBody());
 
-            if($registerModel->validate() && $registerModel->register()){
-                return "Success";
+            if ($registerModel->validate() && $registerModel->register()) {
+                $registerModel->register();
             }
+
+            return $this->view("register", [
+                "model" => $registerModel
+            ]);
         }
-        echo '<pre>';
-        print_r($registerModel->errors);
-        echo '</pre>';
-        return $this->view('register',[
+
+        return $this->view('register', [
             'model' => $registerModel
-        ]);
-
-
-
-        /* $body = APPLICATION::$app->request->getBody(); */
-        /* $login = APPLICATION::$app->request->getBody()['login'];
-        if(!$login){
-            $errors['login'] = 'Champs Obligatoire';
-        }
-        $email = APPLICATION::$app->request->getBody()['email'];
-        if(!$email){
-            $errors['email'] = 'Champs Obligatoire';
-        }
-        $password = APPLICATION::$app->request->getBody()['password'];
-        if(!$password){
-            $errors['password'] = 'Champs Obligatoire';
-        }
-
-        return $this->view('register',[
-            'errors'=>$errors
-        ]); */
+        ]);        
     }
 }

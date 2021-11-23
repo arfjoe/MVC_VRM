@@ -1,15 +1,12 @@
 <section>
-    <h3>Login</h3>
-    <form action="" method="post">
-        <div class="mb-3">
-            <label for="login" class="form-label">Login</label>
-            <input type="text" class="form-control" name="login" id="login" required>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" id="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</section>
+<h3>Login</h3>
+<?php $form = \App\core\form\Form::begin('', "post") ?>
+
+<?php echo $form->field($model, 'login') ?>
+<?php echo $form->field($model, 'password')->passwordField() ?>
+
+<br>
+<button type="submit" class="btn btn-primary">Login</button><br>
 <p class="redirec_register">Pas encore inscrit ? C'est <a class="nav-link" href="/register">ici</a> que ça ce passe.</p>
+<?php echo \app\core\form\Form::end() ?>
+</section>
