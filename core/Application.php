@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Router;
+use App\Core\Database;
 use App\Core\Response;
 
 class Application
@@ -12,6 +13,7 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
+    public Database $database;
 
     /**
      * Application constructor.
@@ -24,6 +26,7 @@ class Application
         self::$ROOT_DIR = $rootPath;
         $this->request = new Request();
         $this->response = new Response();
+        $this->database = new Database();
         $this->router = new Router($this->request, $this->response);
     }
 
