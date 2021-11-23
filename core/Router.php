@@ -90,7 +90,7 @@ class Router
     public function layoutContent()
     {
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/layouts/main.php";
+        include_once Application::$ROOT_DIR . "../views/layouts/main.php";
         return ob_get_clean();
     }
 
@@ -108,7 +108,7 @@ class Router
         // --------------solution 2
         extract($params);
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/{$view}.php";
+        include_once Application::$ROOT_DIR . "../views/{$view}.php";
         return ob_get_clean();
     }
 }

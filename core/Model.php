@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\model\Database;
+
 abstract class Model{
 
     public const RULE_REQUIRED = 'required';
@@ -71,8 +73,8 @@ abstract class Model{
         return [
             self::RULE_REQUIRED=>'Champs requis',
             self::RULE_EMAIL=>'Saisir une adresse mail valide',
-            self::RULE_MIN=>'Minimum {min} caractères',
-            self::RULE_MAX=>'Maximum {max} caractères',
+            /* self::RULE_MIN=>'Minimum {min} caractères',
+            self::RULE_MAX=>'Maximum {max} caractères', */
             self::RULE_MATCH=>'le champ doit être le même que {match}',
         ];
     }
@@ -84,4 +86,5 @@ abstract class Model{
     public function getFirstError($attribute){
         return $this->errors[$attribute][0] ?? false;
     }
+    
 }
